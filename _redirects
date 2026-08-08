@@ -1,0 +1,63 @@
+/thank-you /thank-you.html 200
+
+# Retired pages (photography/videography/custom packages) -> new services overview
+/photography                                                 /services               301
+/photography.html                                            /services               301
+/videography                                                 /services               301
+/videography.html                                            /services               301
+/content-creation                                             /services               301
+/content-creation.html                                        /services               301
+/engagements                                                  /services               301
+/engagements.html                                             /services               301
+/custom-packages                                              /services               301
+/custom-packages.html                                         /services               301
+/weddings                                                     /services               301
+/weddings.html                                                /services               301
+/wedding-planning                                              /services               301
+/wedding-planning.html                                         /services               301
+
+# Old platform URLs (404 fixes)
+/referral                                                    /contact                301
+/portfolio-collections/portfolio/everlasting-vows            /services               301
+/english-privacy-policy                                      /privacy                301
+/service-page/engagement-shoot                                /services               301
+/service-page/wedding-photography-promo-4-hours-1             /services               301
+/portfolio-collections/portfolio/destination-weddings         /services               301
+/portfolio-collections/portfolio/the-grand-ceremony            /services               301
+/portfolio-collections/portfolio/romantic-portraits            /services               301
+/wedding-promo4                                                /services               301
+/portfolio-collections/portfolio                               /services               301
+/service-page/wedding-photography-promo-6-hours-1              /services               301
+/wedding-videography                                           /services               301
+/portfolio-collections/portfolio/joyful-reception               /services               301
+/service-page/engagement-videography-1                          /services               301
+/service-page/engagement-photography-and-videography            /services               301
+/inquiry-services-page                                        /contact                301
+/accessibility-statement                                      /accessibility          301
+/portfolio                                                    /services               301
+/my-addresses                                                 /contact                301
+/book-online                                                  /contact                301
+/engagement                                                   /services               301
+/wedding-enquiry                                               /contact                301
+/portfolio-collections/portfolio/intimate-details               /services               301
+/wedding                                                       /services               301
+/service-page/wedding-consultation                             /services               301
+
+# Retired blog posts (photography/videography-specific) -> blog index
+/blog/how-to-feel-comfortable-in-front-of-camera               /blog                   301
+/blog/whats-included-in-a-wedding-photography-package           /blog                   301
+/blog/why-an-engagement-session-is-worth-it                     /blog                   301
+/blog/wedding-videography-vs-content-creation                   /blog                   301
+/blog/wedding-photographer-tamworth-nsw                         /blog                   301
+
+# .html to clean URL redirects (indexing fix)
+/about.html                                                   /about                  301
+/accessibility.html                                           /accessibility          301
+/contact.html                                                 /contact                301
+/faq.html                                                      /faq                    301
+/privacy.html                                                  /privacy                301
+/services.html                                                 /services               301
+/process.html                                                  /process                301
+/day-of-coordination.html                                      /day-of-coordination     301
+/partial-planning.html                                         /partial-planning        301
+/full-wedding-planning.html                                     /full-wedding-planning   301

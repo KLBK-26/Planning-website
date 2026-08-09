@@ -330,7 +330,7 @@ document.querySelectorAll("[data-require-one]").forEach((group) => {
   banner.setAttribute("aria-label", "Cookie notice");
   banner.innerHTML = [
     '<div class="cookie-banner-inner">',
-    '<p>This site uses cookies to improve your experience. <a href="/privacy.html">Learn more</a></p>',
+    '<p>This site uses cookies to improve your experience. <a href="/privacy.html">Read our privacy policy</a></p>',
     '<div class="cookie-banner-actions">',
     '<button class="button cookie-accept">Got it</button>',
     '<button class="button button--secondary cookie-decline">Decline</button>',
@@ -339,7 +339,12 @@ document.querySelectorAll("[data-require-one]").forEach((group) => {
   ].join("");
   document.body.appendChild(banner);
 
+  var autoDismissTimer = setTimeout(function () {
+    dismissBanner(true);
+  }, 6000);
+
   function dismissBanner(loadClarity) {
+    clearTimeout(autoDismissTimer);
     localStorage.setItem("klbk_cookie_notice", loadClarity ? "accepted" : "declined");
     banner.classList.add("cookie-banner--hiding");
     setTimeout(function () { banner.remove(); }, 400);
@@ -353,5 +358,65 @@ document.querySelectorAll("[data-require-one]").forEach((group) => {
     dismissBanner(false);
     // Disable Clarity for this session if already loaded
     if (window.clarity) window.clarity("stop");
+  });
+})();
+
+/* ==========================================
+   BOOKING MODAL
+   Opens the Google Calendar scheduling page for a
+   given service in a lazy-loaded overlay, so nothing
+   loads until the couple actually clicks "Book".
+   ========================================== */
+(function () {
+  var modal, iframe, closeBtn, lastFocused;
+
+  function buildModal() {
+    modal = document.createElement("div");
+    modal.className = "booking-modal";
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-label", "Book a free chat");
+    modal.innerHTML = [
+      '<div class="booking-modal-backdrop" data-booking-close></div>',
+      '<div class="booking-modal-panel">',
+      '<button type="button" class="booking-modal-close" data-booking-close aria-label="Close booking window">&times;</button>',
+      '<div class="booking-modal-body"><iframe title="Book a free chat" loading="lazy"></iframe></div>',
+      '</div>'
+    ].join("");
+    document.body.appendChild(modal);
+    iframe = modal.querySelector("iframe");
+    modal.querySelectorAll("[data-booking-close]").forEach(function (el) {
+      el.addEventListener("click", closeModal);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
+  }
+
+  function openModal(url) {
+    if (!modal) buildModal();
+    lastFocused = document.activeElement;
+    iframe.src = url;
+    modal.classList.add("is-open");
+    document.body.classList.add("booking-modal-open");
+    closeBtn = modal.querySelector(".booking-modal-close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove("is-open");
+    document.body.classList.remove("booking-modal-open");
+    iframe.src = "about:blank";
+    if (lastFocused) lastFocused.focus();
+  }
+
+  document.querySelectorAll("[data-booking-url]").forEach(function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      var url = btn.getAttribute("data-booking-url");
+      if (!url) return;
+      openModal(url);
+    });
   });
 })();
